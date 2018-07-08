@@ -100,14 +100,11 @@ impl Field {
 fn main() {
     let mut field = Field::new(25, 25);
     field.init_field();
-
-    let mut count = 0;
-
     loop {
         field.update();
 
-        for cell in &field.data {
-            if count != 0 && count % field.width == 0 {
+        for (index, cell) in field.data.iter().enumerate() {
+            if index != 0 && index % field.width == 0 {
                 println!("");
             }
             print!(
@@ -117,7 +114,6 @@ fn main() {
                     _ => "□",
                 }
             );
-            count = count + 1;
         }
 
         println!("\n----------------------------------");
